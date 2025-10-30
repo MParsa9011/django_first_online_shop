@@ -1,14 +1,16 @@
-{% extends '_base.html' %}
+{% load socialaccount %}
 
-{% load crispy_forms_tags %}
 
-{% block page_title %}Home Page{% endblock %}
+<h2>Login</h2>
 
-{% block content %}
-    <form action="" method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit">Login</button>
-    </form>
-{% endblock %}
+<form method="post" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
 
+<hr>
+
+<a href="{% provider_login_url 'google' %}" class="btn btn-danger">
+  <i class="fa fa-google"></i> Login with Google
+</a>
