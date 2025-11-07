@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     # my_apps
     'accounts',
     'pages',
+    'products',
 ]
 
 SITE_ID = 1
