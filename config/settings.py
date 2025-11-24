@@ -35,9 +35,12 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'admin_interface',
-    'colorfield',
-    'grappelli',
+    # # design for admin apps
+    # 'admin_interface',
+    # 'colorfield',
+    # 'grappelli',
+
+    # django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -54,6 +57,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     # other_apps
+    'rosetta',
     'crispy_forms',
     'crispy_bootstrap5',
 
@@ -163,7 +167,12 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 # LANGUAGE_CODE = 'en-us'
-LANGUAGE_CODE = 'fa'
+LANGUAGE_CODE = 'fa-ir'
+
+LANGUAGES = (
+    ('en', 'English'),
+    ('fa', 'Persian'),
+)
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Asia/Tehran'
@@ -200,3 +209,10 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 # crispy forms settings
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+from django.contrib.messages import constants as messages_constants
+# for messages framwork
+MESSAGE_TAGS = {
+    messages_constants.ERROR: 'danger',
+}
+
