@@ -1,9 +1,11 @@
 {% extends '_base.html' %}
 {% load static %}
 {% load persian_numbers %}
+{% load number_format %}
 {% load crispy_forms_tags %}
 {% load comment_tags %}
 {% load i18n %}
+
 
 {% block content %}
     <div class="ShoppingYar-preloader active">
@@ -50,21 +52,36 @@
                                     {{ product.description|truncatewords:30 }}
                                 </p>
                                 <div class="my-5 py-5 product-price-wrapper mb--25">
-                                    <span class="money text-success">{{ product.price|persian_num }} تومان</span>
+                                    <span class="money text-success">{{ product.price|comma_number|persian_num }} تومان</span>
                                     <span class="price-separator">-</span>
-                                    <span class="money old-price text-danger">{{ product.price|persian_num }} تومان</span>
+                                    <span class="money old-price text-danger">{{ product.price|comma_number|persian_num }} تومان</span>
                                 </div>
+                                {#                                <div class="product-action d-flex align-items-sm-center align-content-center mb--30">#}
+                                {#                                    <div class="quantity-wrapper d-flex justify-content-start">#}
+                                {#                                        <div class="quantity">#}
+                                {#                                            <input type="number" class="quantity-input" name="qty" id="qty" value="1"#}
+                                {#                                                   min="1">#}
+                                {#                                        </div>#}
+                                {#                                    </div>#}
+                                {#                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"#}
+                                {#                                            onclick="window.location.href='cart.html'">#}
+                                {#                                        اضافه به سبد خرید#}
+                                {#                                    </button>#}
+                                {#                                </div>#}
                                 <div class="product-action d-flex align-items-sm-center align-content-center mb--30">
-                                    <div class="quantity-wrapper d-flex justify-content-start">
-                                        <div class="quantity">
-                                            <input type="number" class="quantity-input" name="qty" id="qty" value="1"
-                                                   min="1">
+                                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                        {% csrf_token %}
+                                        <div class="quantity-wrapper d-flex justify-content-start">
+                                            <div class="quantity">
+                                                <input type="number" class="quantity-input" name="quantity" id="qty"
+                                                       value="1"
+                                                       min="1" max="20">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2"
-                                            onclick="window.location.href='cart.html'">
-                                        {% trans 'add to cart' %}
-                                    </button>
+
+                                        <button class="btn btn-small btn-bg-red btn-color-white btn-hover-2"
+                                                type="submit">{% trans 'Add to Cart' %}</button>
+                                    </form>
                                 </div>
                                 <div class="product-footer-meta mt-5 pt-5">
                                     <p><span class="m-0">{% trans 'Categories:' %}</span>
@@ -91,7 +108,7 @@
                                     </a>
                                     <a class="m-0 product-data-tab__link nav-link" id="nav-reviews-tab"
                                        data-toggle="tab" href="#nav-reviews" role="tab" aria-selected="true">
-                                        <span>{% trans 'Comments' %} ({{ product.comments|only_active_comments|length|persian_num }})</span>
+                                        <span>{% trans 'Comments' %} ({{ product.comments|only_active_comments|length|comma_number|persian_num }})</span>
                                     </a>
                                 </div>
                                 <div class="tab-content product-data-tab__content" id="product-tabContent">
@@ -131,7 +148,7 @@
                                     <div class="tab-pane fade" id="nav-reviews" role="tabpanel"
                                          aria-labelledby="nav-reviews-tab">
                                         <div class="product-reviews">
-                                            <h3 class="review__title">{{ product.comments|only_active_comments|length|persian_num }}
+                                            <h3 class="review__title">{{ product.comments|only_active_comments|length|comma_number|persian_num }}
                                                 {% trans 'Comments for' %}
                                                 {{ product.title }}</h3>
                                             <ul class="review__list">
@@ -171,12 +188,18 @@
                                                             {% trans 'Write your comment' %}
                                                         </span>
                                                         <br>
-                                                        <form action="{% url 'comment_create' product.id %}"
-                                                              method="post">
-                                                            {% csrf_token %}
-                                                            {{ comment_form|crispy }}
-                                                            <input type="submit" value="{% trans 'send' %}">
-                                                        </form>
+                                                        {% if user.is_authenticated %}
+                                                            <form action="{% url 'comment_create' product.id %}"
+                                                                  method="post">
+                                                                {% csrf_token %}
+                                                                {{ comment_form|crispy }}
+                                                                <input type="submit" value="{% trans 'send' %}">
+                                                            </form>
+                                                        {% else %}
+                                                            {% trans 'To write a comment please ' %}
+                                                            <a href="{% url 'account_login' %}">{% trans 'login' %}</a>
+
+                                                        {% endif %}
 
                                                     </div>
                                                 </div>
@@ -208,82 +231,9 @@
         </div>
         <!-- Search form Popup End -->
 
-        <!-- Mini Cart Start -->
-        <aside class="mini-cart" id="miniCart">
-            <div class="mini-cart-wrapper">
-                <a href="" class="btn-close"><i class="flaticon flaticon-cross"></i></a>
-                <div class="mini-cart-inner">
-                    <h3 class="mini-cart__heading mb--40 mb-lg--30 text-right">سبد خرید</h3>
-                    <div class="mini-cart__content">
-                        <ul class="mini-cart__list text-right">
-                            <li class="mini-cart__product d-flex justify-content-between">
-                                <div class="mini-cart__product__image">
-                                    <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                                    </a>
-                                </div>
-                                <div class="mini-cart__product__content pt-2">
-                                    <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول سماره یک </a>
-                                        <a href="#" class="">
-                                            &#10060;
-                                        </a>
-                                    </span>
-                                    <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="mini-cart__product d-flex justify-content-between">
-                                <div class="mini-cart__product__image">
-                                    <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                                    </a>
-                                </div>
-                                <div class="mini-cart__product__content pt-2">
-                                    <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول سماره یک </a>
-                                        <a href="#" class="">
-                                            &#10060;
-                                        </a>
-                                    </span>
-                                    <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="mini-cart__product d-flex justify-content-between">
-                                <div class="mini-cart__product__image">
-                                    <a href="#">
-                                        <img src="assets/img/products/prod-1-100x100.jpg" alt="products">
-                                    </a>
-                                </div>
-                                <div class="mini-cart__product__content pt-2">
-                                    <span class="mini-cart__product__title d-flex flex-row justify-content-between">
-                                        <a href="#"> محصول سماره یک </a>
-                                        <a href="#" class="">
-                                            &#10060;
-                                        </a>
-                                    </span>
-                                    <span class="mini-cart__product__quantity">
-                                        <span>۴۹,۰۰۰ تومان</span> &#215; <span>۱</span>
-                                    </span>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="mini-cart__total">
-                            <span>جمع کل</span>
-                            <span class="ammount">۱۴۸,۰۰۰ تومان</span>
-                        </div>
-                        <div class="mini-cart__buttons">
-                            <a href="cart.html" class="btn btn-fullwidth btn-bg-sand mb--20">مشاهده سبد خرید</a>
-                            <a href="checkout.html" class="btn btn-fullwidth btn-bg-sand">پرداخت</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </aside>
-        <!-- Mini Cart End -->
+
+        {% include 'cart/cart_sidebar.html' %}
+
 
         <!-- Global Overlay Start -->
         <div class="ShoppingYar-global-overlay"></div>

@@ -1,0 +1,109 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-01 20:44+0330\n"
+"PO-Revision-Date: 2026-01-02 13:23+0330\n"
+"Last-Translator:   <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Translated-Using: django-rosetta 0.10.2\n"
+
+#: .\templates\_base.html:109
+msgid "my account"
+msgstr "حساب کاربری"
+
+#: .\templates\_base.html:112
+msgid "cart"
+msgstr "سبد خرید"
+
+#: .\templates\_base.html:115
+msgid "favorites"
+msgstr "علاقه مندی ها"
+
+#: .\templates\_base.html:118
+msgid "order's history"
+msgstr "تاریخچه سفارشات"
+
+#: .\templates\_base.html:121
+msgid "logout"
+msgstr "خروج"
+
+#: .\templates\_base.html:126
+msgid "login"
+msgstr "ورود"
+
+#: .\templates\_base.html:129
+msgid "signup"
+msgstr "ثبت نام"
+
+#: .\templates\account\email\email_confirmation_massage.txt:5
+#, python-format
+msgid ""
+"\n"
+"\n"
+"Hello from %(site_name)s👋👋\n"
+"%(user_display)s\n"
+"If you requested this email please click on this link bellow:\n"
+"%(activate_url)s\n"
+"\n"
+msgstr ""
+
+#: .\templates\account\email\email_confirmation_subject.txt:3
+msgid "Please confirm email"
+msgstr "لطفا ایمیل خود را تایید کنید"
+
+#: .\templates\account\email_confirm.html:7
+msgid "Confirm Email Address"
+msgstr "لطفا ایمیل خود را تایید کنید"
+
+#: .\templates\account\email_confirm.html:15
+msgid "Confirm Your Email"
+msgstr "لطفا ایمیل خود را تایید کنید"
+
+#: .\templates\account\email_confirm.html:23
+#, python-format
+msgid ""
+"\n"
+"                        Please confirm that \n"
+"                        <a href=\"mailto:%(email)s\" class=\"text-blue-600 font-semibold hover:underline\">%(email)s</a>\n"
+"                        is the email address for user \n"
+"                        <span class=\"font-medium text-gray-900\">%(user_display)s</span>.\n"
+"                    "
+msgstr ""
+
+#: .\templates\account\email_confirm.html:38
+msgid "Confirm Email"
+msgstr "لطفا ایمیل خود را تایید کنید"
+
+#: .\templates\account\email_confirm.html:43
+msgid "If you did not request this, you can safely ignore this email."
+msgstr ""
+
+#: .\templates\account\email_confirm.html:48
+msgid ""
+"\n"
+"                        This email is already confirmed by a different account.\n"
+"                    "
+msgstr ""
+
+#: .\templates\account\email_confirm.html:56
+#, python-format
+msgid ""
+"\n"
+"                    This email confirmation link has expired or is invalid.\n"
+"                    Please <a href=\"%(email_url)s\" class=\"text-yellow-600 hover:underline font-semibold\">\n"
+"                        request a new confirmation\n"
+"                    </a>.\n"
+"                "
+msgstr ""
