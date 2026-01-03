@@ -2,10 +2,6 @@ from django import template
 
 register = template.Library()
 
-# Mapping table
-PERSIAN_DIGITS = str.maketrans('0123456789', '۰۱۲۳۴۵۶۷۸۹')
-
-
 @register.filter(name='persian_num')
 def persian_numbers(value):
     """
@@ -16,7 +12,9 @@ def persian_numbers(value):
         return ''
 
     # Convert to string first
-    text = str(value)
+    value = str(value)
+
+    english_to_persian_table = value.maketrans('0123456789', '۰۱۲۳۴۵۶۷۸۹')
 
     # Replace digits
-    return text.translate(PERSIAN_DIGITS)
+    return value.translate(english_to_persian_table)

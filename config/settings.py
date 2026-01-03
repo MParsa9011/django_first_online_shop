@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.humanize',
+
     # Required for django-allauth
     'django.contrib.sites',
 
@@ -57,6 +59,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     # other_apps
+    'jalali_date',
     'rosetta',
     'crispy_forms',
     'crispy_bootstrap5',
@@ -66,6 +69,7 @@ INSTALLED_APPS = [
     'pages',
     'products',
     'cart',
+    'persian_translate'
 ]
 
 SITE_ID = 1
@@ -223,5 +227,9 @@ from django.contrib.messages import constants as messages_constants
 # for messages framwork
 MESSAGE_TAGS = {
     messages_constants.ERROR: 'danger',
+}
+
+MULTI_CAPTCHA_ADMIN = {
+    'engine': 'recaptcha2',
 }
 

@@ -3,6 +3,7 @@
 {% load persian_numbers %}
 {% load number_format %}
 {% load i18n %}
+{% load humanize %}
 
 {% block page_title %}{% trans 'product list' %}
 {% endblock %}
@@ -77,7 +78,7 @@
                                                                 <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
                                                             </h3>
                                                             <div class="product-price-wrapper mb--30">
-                                                                <span class="money text-success">{{ product.price|comma_number|persian_num }} تومان</span>
+                                                                <span class="money text-success">{{ product.price|intcomma:False|persian_num }} تومان</span>
                                                             </div>
                                                             <a href="#"
                                                                class="btn btn-small btn-bg-sand btn-color-dark px-3">اضافه

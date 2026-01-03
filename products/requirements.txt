@@ -14,9 +14,14 @@ django-cache-url==3.4.5
 django-colorfield==0.14.0
 django-crispy-forms==2.4
 django-grappelli==4.0.2
+django-jalali-date==2.0.0
+django-multi-captcha-admin==2.0.0
+django-recaptcha2==1.4.1
 django-rosetta==0.10.2
 environs==14.4.0
 idna==3.10
+jalali_core==1.0.0
+jdatetime==5.2.0
 marshmallow==4.0.1
 oauthlib==3.3.1
 pillow==11.3.0

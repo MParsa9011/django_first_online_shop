@@ -5,6 +5,7 @@
 {% load crispy_forms_tags %}
 {% load comment_tags %}
 {% load i18n %}
+{% load humanize %}
 
 {% block content %}
     <div class="wrapper">
@@ -25,12 +26,12 @@
 
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper">
-            <div class="page-content-inner ptb--80">
-                <div class="container">
+            <div class="page-content-inner ptb--100">
+                <div class="container-fluid px-lg-5">
                     <div class="row">
-                        <div class="col-lg-8 mb-md--50">
-                                <div class="row no-gutters">
-                                    <div class="col-12">
+                        <div class="col-lg-12 mb-md--100">
+                            <div class="row no-gutters">
+                                <div class="col-xxl-12">
                                     {% if cart %}
                                         <div class="table-content table-responsive">
                                             <table class="table text-center">
@@ -38,7 +39,7 @@
                                                 <tr>
                                                     <th>&nbsp;</th>
                                                     <th>عکس محصول</th>
-                                                    <th class="text-left">نام محصول</th>
+                                                    <th>نام محصول</th>
                                                     <th>قیمت</th>
                                                     <th>مقدار</th>
                                                     <th>مجموع</th>
@@ -54,7 +55,7 @@
                                                             </a>
                                                         </td>
                                                         <td class="product-thumbnail text-left">
-                                                            <img src="assets/img/products/prod-10-70x88.jpg"
+                                                            <img src="{{ item.product_obj.image.url }}"
                                                                  alt="Product Thumnail">
                                                         </td>
                                                         <td class="product-name wide-column">
@@ -64,11 +65,12 @@
                                                         </td>
                                                         <td class="product-price">
                                                             <span class="product-price-wrapper">
-                                                                <span class="money">{{ item.product_obj.price|comma_number|persian_num }} تومان</span>
+                                                                <span class="money">{{ item.product_obj.price|intcomma:False|persian_num }} تومان</span>
                                                             </span>
                                                         </td>
                                                         <td class="product-quantity">
-                                                            <form method="POST" action="{% url 'cart:cart_add' item.product_obj.id %}">
+                                                            <form method="POST"
+                                                                  action="{% url 'cart:cart_add' item.product_obj.id %}">
                                                                 {% csrf_token %}
                                                                 <div class="quantity">
                                                                     <input
@@ -79,13 +81,16 @@
                                                                             value="{{ item.quantity }}"
                                                                             min="1">
                                                                     {{ item.product_update_quantity_form.inplace }}
-                                                                    <button type="submit">{% trans 'Update' %}</button>
+                                                                    <div class="text-center">
+                                                                        <button class="btn btn-primary text-center"
+                                                                                type="submit">{% trans '↻' %}</button>
+                                                                    </div>
                                                                 </div>
                                                             </form>
                                                         </td>
                                                         <td class="product-total-price">
                                                             <span class="product-price-wrapper">
-                                                                <span class="money">{{ item.total_price|comma_number|persian_num }} تومان</span>
+                                                                <span class="money">{{ item.total_price|intcomma:False|persian_num }} تومان</span>
                                                             </span>
                                                         </td>
                                                     </tr>
@@ -99,25 +104,22 @@
                                         <a href="{% url 'product_list' %}">{% trans 'Go To Shop' %}</a>
 
                                     {% endif %}
-                                    </div>
                                 </div>
-                                <div class="row no-gutters border-top pt--20 mt--20">
-                                    <div class="col-sm-6 text-sm-right">
-                                        <button type="submit" class="cart-form__btn">خالی کردن سبد خرید</button>
-                                    </div>
-                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-4">
+                        <br>
+
+                        <div class="col-lg-4 pt--70 mt--40">
                             <div class="cart-collaterals">
                                 <div class="cart-totals">
-                                    <h5 class="font-size-14 font-bold mb--15">مجموع</h5>
+                                    <h5 class="font-size-14 font-bold mb--35">مجموع</h5>
                                     <div class="cart-calculator">
                                         <div class="cart-calculator__item">
                                             <div class="cart-calculator__item--head">
                                                 <span>مجموع</span>
                                             </div>
                                             <div class="cart-calculator__item--value">
-                                                <span>{{ cart.get_total_price|comma_number|persian_num }} تومان</span>
+                                                <span>{{ cart.get_total_price|intcomma:False|persian_num }} تومان</span>
                                             </div>
                                         </div>
                                         <div class="cart-calculator__item order-total">
@@ -126,7 +128,7 @@
                                             </div>
                                             <div class="cart-calculator__item--value">
                                                 <span class="product-price-wrapper">
-                                                    <span class="money">{{ cart.get_total_price|comma_number|persian_num }} تومان</span>
+                                                    <span class="money">{{ cart.get_total_price|intcomma:False|persian_num }} تومان</span>
                                                 </span>
                                             </div>
                                         </div>
@@ -136,6 +138,11 @@
                                    class="btn btn-fullwidth btn-bg-red btn-color-white btn-hover-2">
                                     ثبت سفارش
                                 </a>
+                            </div>
+                        </div>
+                        <div class="row no-gutters border-top pt--5 mt--80 p-10">
+                            <div class="col-sm-12 text-sm-right">
+                                <button type="submit" class="cart-form__btn">خالی کردن سبد خرید</button>
                             </div>
                         </div>
                     </div>

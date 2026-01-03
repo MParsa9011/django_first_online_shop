@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.db import models
 from django.shortcuts import reverse
@@ -12,7 +13,7 @@ class Product(models.Model):
     price = models.PositiveIntegerField(default=0)
     active = models.BooleanField(default=True)
 
-    datetime_created = models.DateTimeField(auto_now_add=True)
+    datetime_created = models.DateTimeField(default=timezone.now, verbose_name=_('Date created'))
     datetime_modified = models.DateTimeField(auto_now=True)
     image = models.ImageField(verbose_name=_('Product Image'), upload_to='product/product_images', null=True, blank=True)
 
