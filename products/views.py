@@ -9,10 +9,10 @@ from .forms import CommentForm
 from .models import Product, Comment
 from cart.forms import AddToCartForm
 
-# def test_translation(request):
-#     result = _('Hello')
-#     messages.success(request, 'this is a success message')
-#     return HttpResponse(result)
+def test_translation(request):
+    result = _('Hello')
+    messages.success(request, 'this is a success message')
+    return HttpResponse(result)
 
 
 class ProductListView(generic.ListView):
@@ -47,7 +47,6 @@ class CommentCreateView(CreateView):
         product_id = int(self.kwargs.get('product_id'))
         product = get_object_or_404(Product, id=product_id)
         obj.product = product
-
 
         return super().form_valid(form)
 
