@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'rosetta',
     'crispy_forms',
     'crispy_bootstrap5',
+    'ckeditor',
 
     # my_apps
     'accounts',
@@ -194,6 +195,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Media
 MEDIA_URL = 'media/'

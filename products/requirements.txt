@@ -1,5 +1,4 @@
 asgiref==3.10.0
-backports-datetime-fromisoformat==2.0.3
 certifi==2025.10.5
 cffi==2.0.0
 charset-normalizer==3.4.3
@@ -11,10 +10,12 @@ Django==4.2.25
 django-admin-interface==0.31.0
 django-allauth==65.12.0
 django-cache-url==3.4.5
+django-ckeditor==6.7.3
 django-colorfield==0.14.0
 django-crispy-forms==2.4
 django-grappelli==4.0.2
 django-jalali-date==2.0.0
+django-js-asset==3.1.2
 django-multi-captcha-admin==2.0.0
 django-recaptcha2==1.4.1
 django-rosetta==0.10.2
@@ -24,9 +25,9 @@ jalali_core==1.0.0
 jdatetime==5.2.0
 marshmallow==4.0.1
 oauthlib==3.3.1
-pillow==11.3.0
+pillow==12.0.0
 polib==1.2.0
-psycopg2-binary==2.9.11
+psycopg2-binary==2.9.10
 pycparser==2.23
 PyJWT==2.10.1
 python-dotenv==1.2.1
