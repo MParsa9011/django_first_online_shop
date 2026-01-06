@@ -10,15 +10,18 @@
 
 
 {% block content %}
-    {#<!-- Preloader Start -->#}
-    {#<div class="ShoppingYar-preloader active">#}
-    {#    <div class="ShoppingYar-preloader-inner h-100 d-flex align-items-center justify-content-center">#}
-    {#        <div class="ShoppingYar-child ShoppingYar-bounce1"></div>#}
-    {#        <div class="ShoppingYar-child ShoppingYar-bounce2"></div>#}
-    {#        <div class="ShoppingYar-child zuka-bounce3"></div>#}
-    {#    </div>#}
-    {#</div>#}
+    <!-- Preloader Start -->
+    <div class="ShoppingYar-preloader active">
+        <div class="ShoppingYar-preloader-inner h-100 d-flex align-items-center justify-content-center">
+            <div class="ShoppingYar-child ShoppingYar-bounce1"></div>
+            <div class="ShoppingYar-child ShoppingYar-bounce2"></div>
+            <div class="ShoppingYar-child zuka-bounce3"></div>
+        </div>
+    </div>
     <!-- Preloader End -->
+
+    {% trans 'Product List' as header %}
+    {% include 'topheader.html' with header_name=header %}
 
     <!-- Main Wrapper Start -->
 

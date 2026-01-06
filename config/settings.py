@@ -70,7 +70,8 @@ INSTALLED_APPS = [
     'pages',
     'products',
     'cart',
-    'persian_translate'
+    'persian_translate',
+    'orders',
 ]
 
 SITE_ID = 1
@@ -236,3 +237,5 @@ MULTI_CAPTCHA_ADMIN = {
     'engine': 'recaptcha2',
 }
 
+# OAUTH2_PROVIDER_CLIENT_ID = 'your_client_id'
+# OAUTH2_PROVIDER_CLIENT_SECRET = 'your_client_secret'

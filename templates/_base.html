@@ -109,24 +109,29 @@
                                             <a class="text-right" href="my-account.html">{% trans 'my account' %}</a>
                                         </li>
                                         <li>
-                                            <a class="text-right" href="{% url 'cart:cart_detail' %}">{% trans 'cart' %}</a>
+                                            <a class="text-right"
+                                               href="{% url 'cart:cart_detail' %}">{% trans 'cart' %}</a>
                                         </li>
                                         <li>
                                             <a class="text-right" href="wishlist.html">{% trans 'favorites' %}</a>
                                         </li>
                                         <li>
-                                            <a class="text-right" href="order-tracking.html">{% trans "order's history" %}</a>
+                                            <a class="text-right"
+                                               href="order-tracking.html">{% trans "order's history" %}</a>
                                         </li>
                                         <li>
-                                            <a class="text-right" href="{% url 'account_logout' %}">{% trans 'logout' %}</a>
+                                            <a class="text-right"
+                                               href="{% url 'account_logout' %}">{% trans 'logout' %}</a>
                                         </li>
 
                                     {% else %}
                                         <li>
-                                            <a class="text-right" href="{% url 'account_login' %}">{% trans 'login' %}</a>
+                                            <a class="text-right"
+                                               href="{% url 'account_login' %}">{% trans 'login' %}</a>
                                         </li>
                                         <li>
-                                            <a class="text-right" href="{% url 'account_signup' %}">{% trans 'signup' %}</a>
+                                            <a class="text-right"
+                                               href="{% url 'account_signup' %}">{% trans 'signup' %}</a>
                                         </li>
 
                                     {% endif %}
@@ -162,9 +167,9 @@
     {% block content %}
     {% endblock %}
 
-    
+    <!-- Footer Start-->
     {% include 'footer.html' %}
-
+    <!-- Footer End-->
 
     <!-- Search form Popup Start -->
     <div class="searchform__popup" id="searchForm">
@@ -181,7 +186,7 @@
     </div>
     <!-- Search form Popup End -->
 
-{#    {% include 'cart/cart_sidebar.html' %}#}
+    {#    {% include 'cart/cart_sidebar.html' %}#}
 
     <!-- Global Overlay Start -->
     <div class="ShoppingYar-global-overlay"></div>
